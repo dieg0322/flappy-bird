@@ -13,3 +13,20 @@ let score = 0;
 document.addEventListener("keydown", () => {
   birdVelocity = jump;
 });
+
+function drawBird() {
+  ctx.fillStyle = "yellow";
+  ctx.beginPath();
+  ctx.arc(80, birdY, 15, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawPipe(pipe) {
+  ctx.fillStyle = "green";
+  ctx.fillRect(pipe.x, 0, 50, pipe.top);
+  ctx.fillRect(pipe.x, pipe.top + pipe.gap, 50, canvas.height - pipe.top - pipe.gap);
+}
+
+
+
+gameLoop();
