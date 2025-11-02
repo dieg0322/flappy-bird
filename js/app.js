@@ -5,6 +5,7 @@ let birdY = 150;
 let birdVelocity = 0;
 const gravity = 0.6;
 const jump = -10;
+let gameOver = false;
 
 let pipes = [];
 let frame = 0;
@@ -39,9 +40,11 @@ function updatePipes() {
 
     // Colisión
     if (
+      !gameOver &&
       80 + 15 > pipe.x && 80 - 15 < pipe.x + 50 &&
       (birdY - 15 < pipe.top || birdY + 15 > pipe.top + pipe.gap)
     ) {
+      gameOver = true;
       alert("¡Game Over! Puntuación: " + score);
       document.location.reload();
     }
