@@ -2,13 +2,13 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const birdImg = new Image();
-birdImg.src = "img/bird+.png";
+birdImg.src = "img/avion.png";
 
 const pipeImg = new Image();
-pipeImg.src = "img/block.png";
+pipeImg.src = "img/poste.png";
 
 const bgImg = new Image();
-bgImg.src = "img/fondo.avif";
+bgImg.src = "img/fondo.png";
 
 let birdY = 150;
 let birdVelocity = 0;
@@ -23,15 +23,21 @@ let score = 0;
 document.addEventListener("keydown", () => {
   birdVelocity = jump;
 });
-
+/**
 function drawBird() {
   ctx.fillStyle = "yellow";
   ctx.beginPath();
   ctx.arc(80, birdY, 15, 0, Math.PI * 2);
   ctx.fill();
 }
+*/
 
-/*
+function drawBird() {
+  ctx.drawImage(birdImg, 65, birdY - 15, 50, 50); // Ajusta posición y tamaño
+}
+
+
+/**
 function drawPipe(pipe) {
   ctx.fillStyle = "green";
   ctx.fillRect(pipe.x, 0, 50, pipe.top);
@@ -55,7 +61,7 @@ function drawPipe(pipe) {
 function updatePipes() {
   if (frame % 90 === 0) {
     const top = Math.random() * 300 + 50;
-    pipes.push({ x: canvas.width, top: top, gap: 120 });
+    pipes.push({ x: canvas.width, top: top, gap: 180 });
   }
 
   pipes.forEach(pipe => {
