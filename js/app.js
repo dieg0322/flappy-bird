@@ -23,37 +23,18 @@ let score = 0;
 document.addEventListener("keydown", () => {
   birdVelocity = jump;
 });
-/**
-function drawBird() {
-  ctx.fillStyle = "yellow";
-  ctx.beginPath();
-  ctx.arc(80, birdY, 15, 0, Math.PI * 2);
-  ctx.fill();
-}
-*/
 
 function drawBird() {
-  ctx.drawImage(birdImg, 65, birdY - 15, 50, 50); // Ajusta posición y tamaño
+  ctx.drawImage(birdImg, 65, birdY - 15, 50, 50);
 }
 
-
-/**
 function drawPipe(pipe) {
-  ctx.fillStyle = "green";
-  ctx.fillRect(pipe.x, 0, 50, pipe.top);
-  ctx.fillRect(pipe.x, pipe.top + pipe.gap, 50, canvas.height - pipe.top - pipe.gap);
-}
-*/
-
-function drawPipe(pipe) {
-  // Tubo superior (invertido)
   ctx.save();
   ctx.translate(pipe.x + 25, pipe.top); // centro del tubo
-  ctx.scale(1, -1); // voltea verticalmente
-  ctx.drawImage(pipeImg, -25, 0, 50, canvas.height); // dibuja desde el centro
+  ctx.scale(1, -1);
+  ctx.drawImage(pipeImg, -25, 0, 50, canvas.height);
   ctx.restore();
 
-  // Tubo inferior
   ctx.drawImage(pipeImg, pipe.x, pipe.top + pipe.gap, 50, canvas.height);
 }
 
@@ -68,7 +49,6 @@ function updatePipes() {
     pipe.x -= 2;
     drawPipe(pipe);
 
-    // Colisión
     if (
       !gameOver &&
       80 + 15 > pipe.x && 80 - 15 < pipe.x + 50 &&
@@ -79,7 +59,6 @@ function updatePipes() {
       document.location.reload();
     }
 
-    // Puntaje
     if (pipe.x + 50 === 80) score++;
   });
 
@@ -95,7 +74,6 @@ function drawScore() {
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Dibuja fondo
   ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
 
   birdVelocity += gravity;
